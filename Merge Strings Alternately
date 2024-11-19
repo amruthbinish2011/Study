@@ -1,0 +1,51 @@
+public class Solution 
+{
+    public string MergeAlternately(string word1, string word2) 
+    {
+        int i = 0, j = 0;
+        int n1 = word1.Length, n2 = word2.Length;
+        var result = new System.Text.StringBuilder();
+
+        // Add characters in alternating order
+        while (i < n1 && j < n2) 
+        {
+            result.Append(word1[i++]);
+            result.Append(word2[j++]);
+        }
+
+        // Append the remaining characters from the longer string
+        if (i < n1) 
+        {
+            result.Append(word1.Substring(i));
+        }
+        if (j < n2) 
+        {
+            result.Append(word2.Substring(j));
+        }
+
+        return result.ToString();
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        var solution = new Solution();
+
+        string word1 = "abc";
+        string word2 = "pqr";
+
+        string merged = solution.MergeAlternately(word1, word2);
+        Console.WriteLine(merged); // Output: "apbqcr"
+
+        word1 = "ab";
+        word2 = "pqrs";
+        merged = solution.MergeAlternately(word1, word2);
+        Console.WriteLine(merged); // Output: "apbqrs"
+
+        word1 = "abcd";
+        word2 = "pq";
+        merged = solution.MergeAlternately(word1, word2);
+        Console.WriteLine(merged); // Output: "apbqcd"
+    }
+}
